@@ -28,17 +28,17 @@ const favoriteBooks = [];
 const filters = [];
 
 function initActions() {
-    const choice = {
-        dom: {
-          book_image: '.book__image',
-        }
-    };
-    const bookImage = document.querySelectorAll(choice.dom.book_image);        
-    bookImage.forEach((item) => {
-        item.addEventListener('click', (event) => {
+    // const choice = {
+    //     dom: {
+    //       book_image: '.book__image',
+    //     }
+    // };
+    // const bookImage = document.querySelectorAll(choice.dom.book_image);        
+    // bookImage.forEach((item) => {
+    //     item.addEventListener('click', (event) => {
             
-        });
-    });
+    //     });
+    // });
     const booksList = document.querySelector(select.dom.book_list);
     booksList.addEventListener('click', (event) => {
         if(event.target.offsetParent.classList.contains('book__image')) {
@@ -56,13 +56,43 @@ function initActions() {
             books_filter: '.filters',
         }
     };
-   form = document.querySelector('.filters');
-    form.addEventListener('click', (event) => {
-        if(event.target.tagName === 'INPUT' && event.target.type === 'checkbox' && event.target.name === 'filter')
-        console.log('value');
-        
+    const books_filter = document.querySelector(form.dom.books_filter);
+    books_filter.addEventListener('click', (event) => {
+        if(event.target.tagName === 'INPUT' && event.target.type === 'checkbox' && event.target.name === 'filter') {
+            console.log(event.target.value);
+            if(event.target.checked) {
+            filters.push(event.target.value);
+            }
+            else {
+            filters.splice(filters.indexOf(event.target.value), 1);
+            } 
+            console.log(filters);
+            
+        }
     });
-}
+};
+
 initActions();
+
+function filterBooks() {
+    for(let book in dataSource.books) {
+        let shouldBeHidden = false;
+        for(let filter of filters) {
+            if(!condition) {
+                shouldBeHidden = true;
+                break;
+            }
+        }
+        // const booksHidden = document.querySelector(???);
+        
+        // if(shouldBeHidden = true) {
+        //     booksHidden.classList.add('hidden');
+        // }
+        // else {
+        //     booksHidden.classList.remove('hidden');
+        // }
+    }  
+}
+
 
 
